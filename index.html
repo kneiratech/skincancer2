@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Classification</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="status-indicator status-loading" id="modelStatus">
+        <span class="loading"></span> Loading Model...
+    </div>
+
+    <div class="container">
+        <h1>🔬 Skin Cancer Classification</h1>
+        <p class="subtitle">Upload an image or use your camera to analyze skin lesions</p>
+
+        <div class="upload-section">
+            <div class="upload-buttons">
+                <button class="btn btn-primary" onclick="triggerFileInput()" id="uploadBtn" disabled>
+                    📁 Upload Image
+                </button>
+                <input type="file" id="imageInput" class="file-input" accept="image/*" onchange="handleImageUpload(event)">
+                
+                <button class="btn btn-secondary" onclick="toggleCamera()" id="cameraBtn" disabled>
+                    📷 Use Camera
+                </button>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <div class="image-container" id="imageContainer">
+                <div class="placeholder-text" id="placeholderText">
+                    Select an image or use camera to begin analysis
+                </div>
+                <img id="previewImage" class="hidden" alt="Preview">
+                <video id="webcam" class="hidden" width="300" height="300" autoplay></video>
+                <canvas id="canvas" style="display:none;"></canvas>
+            </div>
+        </div>
+
+        <div class="result-section">
+            <h2 class="result-title">Analysis Result</h2>
+            <div class="prediction-result result-waiting" id="predictionResult">
+                Awaiting image analysis...
+            </div>
+            <div class="confidence-bar hidden" id="confidenceBar">
+                <div class="confidence-fill" id="confidenceFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
